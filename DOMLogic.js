@@ -52,3 +52,16 @@ function getFirstCard(columnElement){
         .querySelector('div:last-child div:first-child div:first-child div:first-child div:first-child')
     return firstCard
 }
+
+let firstStandardApp = getFirstCard(standardApplicationsElement);
+let dropZone = getFirstCard(noResponseElement)
+
+//Drag/drop logic
+const dragStartEvent = new MouseEvent('mousedown', {bubbles: true, cancelable: true});
+firstStandardApp.dispatchEvent(dragStartEvent)
+
+const dragMoveEvent = new MouseEvent('mousemove', { bubbles: true, cancelable: true });
+document.dispatchEvent(dragMoveEvent);
+
+const dropEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
+dropZone.dispatchEvent(dropEvent)
