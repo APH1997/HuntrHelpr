@@ -11,8 +11,7 @@
         "storage"
     ],
     "host_permissions": [
-        "https://www.reddit.com/*",
-        "http://www.reddit.com/*"
+        "https://huntr.co/track/boards/*"
     ],
     "content_scripts": [
         {
