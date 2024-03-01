@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Huntr Helpr",
+    "description": "Moves All Standard Applications to No Reponse",
+    "version": "0.1",
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "identity",
+        "scripting",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://www.reddit.com/*",
+        "http://www.reddit.com/*"
+    ],
+    "content_scripts": [
+        {
+          "js": ["./index.js"],
+          "matches": [
+            "*"
+          ]
+        }
+      ],
+    "action": {
+        "default_popup": "index.html"
+    }
+}
