@@ -65,30 +65,38 @@ async function Main() {
                 //for some reason, the DOM logic selects an ancestor when I put them all in one querySelect
                 //so here I just chain it and it works
                 //go figure
+                //it might throw an error with empty columns
                 const firstCard = columnElement
                     .querySelector('div:last-child')
                     .querySelector('div:first-child')
                     .querySelector('div')
                     .querySelector('div')
                     .childNodes[0]
+                    //this last one is so we can simulate the clicks and have them bubble up
+                    //cos idk where the actual event listener is
+                    .querySelector('div[alt^="Logo for"]')
+
                 return firstCard
             }
 
             let firstStandardApp = getFirstCard(standardApplicationsElement);
             const dropZone = getFirstCard(noResponseElement)
 
-            firstStandardApp.style.border = '3px solid yellow'
-            dropZone.style.border = '3px solid green'
-
             //Drag/drop logic
-            const dragStartEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
-            firstStandardApp.dispatchEvent(dragStartEvent)
+            const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            firstStandardApp.dispatchEvent(clickEvent)
+            // const dragStartEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
+            // firstStandardApp.dispatchEvent(dragStartEvent)
 
-            const dragMoveEvent = new MouseEvent('mousemove', { bubbles: true, cancelable: true });
-            document.dispatchEvent(dragMoveEvent);
+            // const dragMoveEvent = new MouseEvent('mousemove', { bubbles: true, cancelable: true });
+            // document.dispatchEvent(dragMoveEvent);
 
-            const dropEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
-            dropZone.dispatchEvent(dropEvent)
+            // const dropEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
+            // dropZone.dispatchEvent(dropEvent)
         })
     }
 }
