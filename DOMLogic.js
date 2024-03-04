@@ -68,7 +68,9 @@ async function Main() {
             }
 
             let firstStandardApp = getFirstCard(standardApplicationsElement);
+            firstStandardApp.style.border = '50px solid black'
             const dropZone = getFirstCard(noResponseElement)
+
 
             //Drag/drop logic
             const dragStartEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
