@@ -62,15 +62,23 @@ async function Main() {
             //drop might work best by fixing the pixel distance to "No Response"
 
             function getFirstCard(columnElement) {
+                //for some reason, the DOM logic selects an ancestor when I put them all in one querySelect
+                //so here I just chain it and it works
+                //go figure
                 const firstCard = columnElement
-                    .querySelector('div:last-child div:first-child div:first-child div:first-child div:first-child')
+                    .querySelector('div:last-child')
+                    .querySelector('div:first-child')
+                    .querySelector('div')
+                    .querySelector('div')
+                    .childNodes[0]
                 return firstCard
             }
 
             let firstStandardApp = getFirstCard(standardApplicationsElement);
-            firstStandardApp.style.border = '50px solid black'
             const dropZone = getFirstCard(noResponseElement)
 
+            firstStandardApp.style.border = '3px solid yellow'
+            dropZone.style.border = '3px solid green'
 
             //Drag/drop logic
             const dragStartEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
