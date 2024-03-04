@@ -82,21 +82,27 @@ async function Main() {
             let firstStandardApp = getFirstCard(standardApplicationsElement);
             const dropZone = getFirstCard(noResponseElement)
 
+
             //Drag/drop logic
-            const clickEvent = new MouseEvent('click', {
+            //TODO: figiure out what's going on by adding event listeners before dispatching events
+            const dragStartEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
+            firstStandardApp.dispatchEvent(dragStartEvent)
+
+
+            const dropZoneBounds = dropZone.getBoundingClientRect()
+            const pointerMoveEvent = new MouseEvent('mousemove', {
                 bubbles: true,
                 cancelable: true,
-                view: window
+                pointerId: 1,
+                pointerType: 'mouse',
+                clientX: dropZoneBounds.x,
+                clientY: dropZoneBounds.y
             });
-            firstStandardApp.dispatchEvent(clickEvent)
-            // const dragStartEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
-            // firstStandardApp.dispatchEvent(dragStartEvent)
+            document.dispatchEvent(pointerMoveEvent)
 
-            // const dragMoveEvent = new MouseEvent('mousemove', { bubbles: true, cancelable: true });
-            // document.dispatchEvent(dragMoveEvent);
 
-            // const dropEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
-            // dropZone.dispatchEvent(dropEvent)
+            const dropEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
+            dropZone.dispatchEvent(dropEvent)
         })
     }
 }
