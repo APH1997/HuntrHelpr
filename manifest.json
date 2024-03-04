@@ -17,7 +17,7 @@
         {
           "js": ["./index.js"],
           "matches": [
-            "*"
+            "https://huntr.co/track/boards/*"
           ]
         }
       ],
