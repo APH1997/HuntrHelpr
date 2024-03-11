@@ -76,12 +76,17 @@ async function Main() {
                     //cos idk where the actual event listener is
                     .querySelector('div[alt^="Logo for"]')
 
-                return firstCard
+                if (firstCard){
+                    return firstCard
+                } else {
+                    throw new Error('Could not locate the first card of a column')
+                }
             }
 
             let firstStandardApp = getFirstCard(standardApplicationsElement);
             const dropZone = getFirstCard(noResponseElement)
 
+            console.log(firstStandardApp, dropZone)
 
             //Drag/drop logic
             //TODO: figiure out what's going on by adding event listeners before dispatching events
@@ -99,7 +104,6 @@ async function Main() {
                 clientY: dropZoneBounds.y
             });
             document.dispatchEvent(pointerMoveEvent)
-
 
             const dropEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
             dropZone.dispatchEvent(dropEvent)
